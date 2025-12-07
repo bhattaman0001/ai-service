@@ -526,6 +526,59 @@ ul {
     color: #000;
 }
 
+/* Hamburger Menu Button */
+.hamburger-menu {
+    display: none;
+    /* Hidden on desktop */
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.hamburger-menu:hover {
+    background: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu:hover span {
+    background: #000;
+}
+
+/* Hamburger Animation when menu is open */
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
 /* Responsive */
 @media (max-width: 1024px) {
     .grid-3 {
@@ -538,11 +591,78 @@ ul {
 }
 
 @media (max-width: 768px) {
+
+    /* Show hamburger menu on mobile */
+    .hamburger-menu {
+        display: flex;
+    }
+
     .app-container {
         flex-direction: column;
         overflow-y: auto;
-        /* Allow scroll on mobile */
         height: auto;
+    }
+
+    /* Sidebar becomes a slide-in menu on mobile */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 280px;
+        height: 100vh;
+        padding: 80px 30px 30px 30px;
+        flex-direction: column;
+        border-right: 1px solid var(--glass-border);
+        border-bottom: none;
+        transition: left 0.3s ease;
+        z-index: 999;
+        overflow-y: auto;
+    }
+
+    /* When sidebar is open */
+    .sidebar.open {
+        left: 0;
+    }
+
+    /* Overlay when sidebar is open */
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 998;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Show sidebar content on mobile */
+    .sidebar-content {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .sidebar-header {
+        margin-bottom: 40px;
+    }
+
+    .main-content {
+        height: auto;
+        display: block;
+        padding: 80px 20px 20px 20px;
+        overflow: visible;
+    }
+
+    .content-section {
+        padding: 20px;
     }
 
     .contact-wrapper {
@@ -550,51 +670,38 @@ ul {
         gap: 50px;
     }
 
-    .sidebar {
+    .or-divider {
+        min-height: auto;
+        padding: 20px 0;
+    }
+
+    .or-divider::before {
         width: 100%;
-        height: auto;
-        padding: 20px;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        position: sticky;
-        top: 0;
-        border-right: none;
-        border-bottom: 1px solid var(--glass-border);
+        height: 2px;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
     }
 
-    .sidebar-content {
-        display: none;
-        /* Hide profile/nav on mobile initially or use hamburger */
+    .big-title {
+        font-size: 2.5rem;
     }
 
-    /* Simplified Mobile View for now */
-    .sidebar-header {
-        margin: 0;
+    .hero-subtitle {
+        font-size: 1rem;
     }
 
-    .main-content {
-        height: auto;
-        display: block;
-        padding: 20px;
-        overflow: visible;
+    .cta-group {
+        flex-direction: column;
     }
 
-    .content-section {
-        position: relative;
-        opacity: 1;
-        transform: none;
-        pointer-events: auto;
-        height: auto;
-        margin-bottom: 60px;
-        display: block;
-        /* Stack sections on mobile */
+    .grid-3 {
+        grid-template-columns: 1fr;
     }
 
-    /* Hide non-active sections? No, on mobile stacking is better usually. 
-       But user asked for "one screen". 
-       Let's keep the tab behavior on mobile too but make the nav accessible.
-    */
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Light Theme Variables */

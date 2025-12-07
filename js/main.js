@@ -41,8 +41,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Optional: Mobile Menu Toggle Logic (if we add a hamburger later)
-    // For now, we assume desktop focus as per "one screen" request.
+    // Mobile Menu Toggle Logic
+    const hamburger = document.getElementById('hamburger-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    function toggleMobileMenu() {
+        hamburger.classList.toggle('active');
+        sidebar.classList.toggle('open');
+        sidebarOverlay.classList.toggle('active');
+
+        // Prevent body scroll when menu is open
+        if (sidebar.classList.contains('open')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    }
+
+    function closeMobileMenu() {
+        hamburger.classList.remove('active');
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    // Toggle menu on hamburger click
+    if (hamburger) {
+        hamburger.addEventListener('click', toggleMobileMenu);
+    }
+
+    // Close menu when clicking overlay
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', closeMobileMenu);
+    }
+
+    // Close menu when clicking a nav link on mobile
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                closeMobileMenu();
+            }
+        });
+    });
+
 
     // Theme Toggle Logic
     const themeBtn = document.getElementById('theme-toggle');
