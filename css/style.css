@@ -206,14 +206,15 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px;
-    height: 100vh;
+    padding: 0;
 }
 
 .content-section {
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     padding: 60px 80px;
@@ -221,9 +222,7 @@ ul {
     pointer-events: none;
     transition: opacity 0.5s ease, transform 0.5s ease;
     transform: translateY(20px);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    display: block;
     overflow-y: auto;
     overflow-x: hidden;
     scroll-behavior: smooth;
@@ -240,7 +239,7 @@ ul {
 
 /* Scrollbar styling for content sections */
 .content-section::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 .content-section::-webkit-scrollbar-track {
@@ -249,7 +248,11 @@ ul {
 
 .content-section::-webkit-scrollbar-thumb {
     background: var(--glass-border);
-    border-radius: 3px;
+    border-radius: 4px;
+}
+
+.content-section::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-cyan);
 }
 
 /* Section Headers */
@@ -272,9 +275,15 @@ ul {
 
 /* Home Section */
 #home {
-    text-align: left;
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    min-height: 100%;
+}
+
+.hero-content {
+    max-width: 800px;
 }
 
 .big-title {
