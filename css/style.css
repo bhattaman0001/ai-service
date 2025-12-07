@@ -800,6 +800,13 @@ ul {
     .contact-wrapper {
         grid-template-columns: 1fr;
         gap: 40px;
+        min-width: unset;
+        /* Remove min-width on mobile */
+    }
+
+    /* Disable horizontal scrolling on mobile */
+    #contact {
+        overflow-x: hidden;
     }
 
     .or-divider {
