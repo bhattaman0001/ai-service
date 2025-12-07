@@ -255,6 +255,24 @@ ul {
     background: var(--accent-cyan);
 }
 
+/* Horizontal scrollbar for contact section */
+#contact::-webkit-scrollbar {
+    height: 8px;
+}
+
+#contact::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#contact::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 4px;
+}
+
+#contact::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-cyan);
+}
+
 /* Section Headers */
 .section-header {
     margin-bottom: 40px;
@@ -407,12 +425,19 @@ ul {
 }
 
 /* Contact Section */
+#contact {
+    overflow-x: auto;
+    overflow-y: visible;
+}
+
 .contact-wrapper {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     gap: 40px;
     width: 100%;
     max-width: 1400px;
+    min-width: 900px;
+    /* Ensures content doesn't get squished */
     align-items: start;
 }
 
