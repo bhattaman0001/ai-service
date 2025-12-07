@@ -588,6 +588,14 @@ ul {
     .grid-2 {
         grid-template-columns: 1fr;
     }
+
+    .big-title {
+        font-size: 3rem;
+    }
+
+    .content-section {
+        padding: 50px 40px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -598,9 +606,10 @@ ul {
     }
 
     .app-container {
-        flex-direction: column;
-        overflow-y: auto;
-        height: auto;
+        flex-direction: row;
+        /* Keep flex-direction row for sidebar */
+        overflow-y: visible;
+        height: 100vh;
     }
 
     /* Sidebar becomes a slide-in menu on mobile */
@@ -654,20 +663,88 @@ ul {
         margin-bottom: 40px;
     }
 
+    /* Main content takes full width on mobile */
     .main-content {
-        height: auto;
-        display: block;
-        padding: 80px 20px 20px 20px;
-        overflow: visible;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        padding: 0;
+        overflow: hidden;
     }
 
+    /* Content sections remain absolute positioned but fill viewport */
     .content-section {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 80px 25px 30px 25px;
+        opacity: 0;
+        pointer-events: none;
+        overflow-y: auto;
+    }
+
+    .content-section.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Hero section adjustments */
+    #home {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 100px 25px 30px 25px;
+    }
+
+    .big-title {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
+
+    .cta-group {
+        flex-direction: row;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+
+    /* Section headers */
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+
+    /* Grids */
+    .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    /* Cards */
+    .card {
         padding: 20px;
     }
 
+    /* Contact section */
     .contact-wrapper {
         grid-template-columns: 1fr;
-        gap: 50px;
+        gap: 40px;
     }
 
     .or-divider {
@@ -683,24 +760,30 @@ ul {
         transform: translateY(-50%);
     }
 
-    .big-title {
-        font-size: 2.5rem;
+    /* Calendly widget */
+    .calendly-inline-widget {
+        min-width: 100% !important;
+        height: 500px !important;
     }
 
-    .hero-subtitle {
-        font-size: 1rem;
+    /* Profile section in sidebar */
+    .profile-img-container {
+        width: 80px;
+        height: 80px;
     }
 
-    .cta-group {
-        flex-direction: column;
+    .profile-brief h1 {
+        font-size: 1.3rem;
     }
 
-    .grid-3 {
-        grid-template-columns: 1fr;
+    .role {
+        font-size: 0.85rem;
     }
 
-    .grid-2 {
-        grid-template-columns: 1fr;
+    /* Background glow */
+    .bg-glow {
+        display: none;
+        /* Hide on mobile for performance */
     }
 }
 
